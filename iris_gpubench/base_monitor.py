@@ -19,6 +19,7 @@ Note:
     Find them in runtime.log.
 """
 
+import subprocess
 import os
 import time
 import csv
@@ -727,7 +728,8 @@ class BaseMonitor(ABC):
     def run_benchmark(self, benchmark: str, live_monitoring: bool = True,
                       plot: bool = True, live_plot: bool = False,
                       monitor_logs: bool = False,
-                      export_to_meerkat: bool = False) -> None:
+                      export_to_meerkat: bool = False,
+                      nvidia_nsights: bool = False) -> None:
         """
         Method to runs the benchmark process
 
@@ -738,8 +740,10 @@ class BaseMonitor(ABC):
             live_plot (bool): If True, updates the metrics plot in real-time while the benchmark is running. Defaults to False.
             monitor_logs (bool): If True, monitors both GPU metrics and logs from the tmux session or Docker container. Defaults to False.
             export_to_meerkat (bool): If True, exports data to meerkat data base. Defaults to False.
+            nvidia_nsights (bool): Install and run nsights cpu and gpu sampling. Defaults to False.
         """
         shutdown_message = "Monitoring Stopped.\nResults will follow...\n"
+
         try:
             # Initialize stats such as timer and exporter
             self._init_benchmark(benchmark, export_to_meerkat)
@@ -767,7 +771,7 @@ class BaseMonitor(ABC):
                         self.exporter.export_metric_readings(self.current_gpu_metrics)
                         # Export Carbon Forecast
                         self.exporter.export_carbon_forecast(self.config['carbon_region_shorthand'])
-
+                    
                     # Wait for the specified interval before the next update
                     time.sleep(self.config['monitor_interval'])
                 except (KeyboardInterrupt, SystemExit):
@@ -776,6 +780,10 @@ class BaseMonitor(ABC):
                     break
                 except Exception as ex:
                     LOGGER.error("Unexpected error during monitoring: %s", ex)
+            
+            if nvidia_nsights:
+                subprocess.run([".nvidia_nsights/setup_nsights.sh"], shell=True)
+                subprocess.run([".nvidia_nsights/run_nsights.sh", benchmark], shell=True)
 
         except (KeyboardInterrupt, SystemExit):
             LOGGER.info("Monitoring interrupted by user.")

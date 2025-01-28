@@ -55,7 +55,7 @@ class GPUMonitor:
 
     def run(self, benchmark_command: str = None, benchmark_image: str = None,
             live_monitoring: bool = True, plot: bool = True, live_plot: bool = False,
-            monitor_logs: bool = False, export_to_meerkat: bool = False) -> None:
+            monitor_logs: bool = False, export_to_meerkat: bool = False, nvidia_nsights: bool = False) -> None:
         """
         Run the benchmark and monitor GPU metrics.
 
@@ -69,6 +69,7 @@ class GPUMonitor:
             live_plot (bool): Update metrics plot in real-time.
             monitor_logs (bool): Monitor both GPU metrics and logs.
             export_to_meerkat (bool): Export metrics to MeerkatDB.
+            nvidia_nsights (bool): Install and run nsights cpu and gpu sampling
 
         Raises:
             ValueError: If both or neither benchmark_command and benchmark_image are specified.
@@ -94,6 +95,7 @@ class GPUMonitor:
             live_plot=live_plot,
             monitor_logs=monitor_logs,
             export_to_meerkat=export_to_meerkat
+            nvidia_nsights=nvidia_nsights
         )
 
         self.ran = True  # Mark as ran after successful execution

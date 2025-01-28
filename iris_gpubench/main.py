@@ -48,6 +48,7 @@ def main():
             live_plot=args.live_plot,
             monitor_logs=args.monitor_logs,
             export_to_meerkat=args.export_to_meerkat
+            nvidia_nsights=arge.nvidia_nsights
         )
         LOGGER.info("GPU monitoring completed.")
 

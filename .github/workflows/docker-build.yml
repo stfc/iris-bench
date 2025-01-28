@@ -1,5 +1,4 @@
-name: CI
-# contains jobs which run on every pull request
+name: Build and Push Docker Images
 on:
   push:
     paths:
@@ -10,7 +9,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build-base-images:
     runs-on: ubuntu-latest
     strategy:
@@ -75,20 +73,3 @@ jobs:
           tags: harbor.stfc.ac.uk/stfc-cloud-staging/iris-bench/${{ matrix.name }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-  linting:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.13.1
-      uses: actions/setup-python@v1
-      with:
-              python-version: 3.13.1
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-    - name: Analysing the code with pylint
-      run: |
-        find . -name '*.py' -exec pylint {} \;
-
