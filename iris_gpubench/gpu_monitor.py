@@ -94,7 +94,7 @@ class GPUMonitor:
             plot=plot,
             live_plot=live_plot,
             monitor_logs=monitor_logs,
-            export_to_meerkat=export_to_meerkat
+            export_to_meerkat=export_to_meerkat,
             nvidia_nsights=nvidia_nsights
         )
 
