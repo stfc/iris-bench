@@ -67,6 +67,9 @@ def parse_arguments(get_carbon_region_names_func):
     parser.add_argument('--monitor_logs', action='store_true',
                         help='Enable monitoring of container or tmux logs in addition to GPU metrics.')
 
+    parser.add_argument('--nvidia_nsights', action='store_true',
+                        help='Enable Nvidia Nsights to do extra GPU and CPU sampling.')
+
     args = parser.parse_args()
 
     # Validate arguments
