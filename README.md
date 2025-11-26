@@ -11,7 +11,7 @@
 ### Documentation
 
 **Explore the IRIS GPU Bench documentation:**  
-[![GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-blue)](https://bryceshirley.github.io/iris-bench/)
+[![GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-blue)](https://stfc.github.io/iris-bench/)
 
 or go to documentation [Index](docs/index.md).
 
