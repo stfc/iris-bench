@@ -22,6 +22,7 @@ setup(
         'matplotlib>=3.7.5',
         'docker>=7.1.0',
         'pytest>=7.4.2',
+        'requests-mock>=1.9.3',
     ],
     entry_points={
         'console_scripts': [
