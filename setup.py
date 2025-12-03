@@ -23,6 +23,7 @@ setup(
         'docker>=7.1.0',
         'pytest>=7.4.2',
         'requests-mock>=1.9.3',
+        'pytest-cov>=4.1.0',
     ],
     entry_points={
         'console_scripts': [
