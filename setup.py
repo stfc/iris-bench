@@ -15,17 +15,18 @@ setup(
     version='0.1.0-dev1',  # Development version
     packages=find_packages(),  # Automatically find packages in the current directory
     install_requires=[
-        'pynvml==11.5.3',
-        'requests==2.32.4',
-        'pyyaml==6.0.2',
-        'tabulate==0.9.0',
-        'matplotlib==3.7.5',
-        'docker==7.1.0',
+        'pynvml>=11.5.3',
+        'requests>=2.32.4',
+        'pyyaml>=6.0.2',
+        'tabulate>=0.9.0',
+        'matplotlib>=3.7.5',
+        'docker>=7.1.0',
+        'pytest>=7.4.2',
     ],
     entry_points={
         'console_scripts': [
             'iris-gpubench=iris_gpubench.main:main',  # Ensures the script is accessible via `iris-gpubench` command
         ],
     },
-    python_requires='==3.8.10',  # Ensure compatibility with Python 3.8.10
+    python_requires='>=3.8.10',  # Ensure compatibility with Python 3.8.10
 )
