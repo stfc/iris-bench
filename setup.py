@@ -15,7 +15,7 @@ setup(
     version='0.1.0-dev1',  # Development version
     packages=find_packages(),  # Automatically find packages in the current directory
     install_requires=[
-        'pynvml>=11.5.3',
+        'pynvml==11.5.3',
         'requests>=2.32.4',
         'pyyaml>=6.0.2',
         'tabulate>=0.9.0',
