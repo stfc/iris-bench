@@ -9,6 +9,14 @@
 # Tmux, and NVIDIA drivers.
 # =============================================================================
 
+# Get Nvidia driver version from first argument to script
+NVIDIA_DRIVER_VERSION=$1
+
+if [ -z "$NVIDIA_DRIVER_VERSION" ] ;then
+   echo "Please provide the Nvidia driver version. e.g. ./setup_vm_tmux.sh <nvidia-driver-version>"
+   exit
+fi
+
 #### INSTALL Git, python3-pip and Venv ###
 
 echo -e "/n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/nInstall git, python3-pip, and Venv/n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/n"
@@ -33,7 +41,7 @@ echo -e "/n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/nINSTALL NVIDIA DRIVERS/n~~~~~~~~~~~~
 
 # Install NVIDIA drivers (if needed)
 # Ensure the driver is up-to-date for the GPU to achieve maximum performance.
-sudo apt install -y nvidia-driver-535
+sudo apt install -y "nvidia-driver-${NVIDIA_DRIVER_VERSION}"
 
 ##### REBOOT VM #####
 

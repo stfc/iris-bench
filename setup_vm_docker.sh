@@ -13,6 +13,14 @@
 #    software for IrisBench and Docker benchmarks.
 # =============================================================================
 
+# Get Nvidia driver version from first argument to script
+NVIDIA_DRIVER_VERSION=$1
+
+if [ -z "$NVIDIA_DRIVER_VERSION" ] ;then
+   echo "Please provide the Nvidia driver version. e.g. ./setup_vm_docker.sh <nvidia-driver-version>"
+   exit
+fi
+
 
 ##### INSTALL OFFICAL DOCKER #####
 
@@ -82,7 +90,7 @@ echo -e "/n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/nINSTALL NVIDIA DRIVERS/n~~~~~~~~~~~~
 
 # Install NVIDIA drivers (if needed)
 # Ensure the driver is up-to-date for the GPU to achieve maximum performance.
-sudo apt install -y nvidia-driver-535
+sudo apt install -y "nvidia-driver-${NVIDIA_DRIVER_VERSION}"
 
 ##### REBOOT VM #####
 
