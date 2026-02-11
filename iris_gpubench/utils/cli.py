@@ -40,46 +40,46 @@ def parse_arguments(get_carbon_region_names_func):
         description='Monitor GPU metrics and optionally export data to MeerkatDB.'
     )
 
-    parser.add_argument('--no_live_monitor', action='store_true',
+    parser.add_argument('--no-live-monitor', action='store_true',
                         help='Disable live monitoring of GPU metrics (default is enabled).')
 
     parser.add_argument('--interval', type=int, default=MONITOR_INTERVAL,
                         help=f'Interval in seconds for collecting GPU metrics (default is {MONITOR_INTERVAL} seconds).')
 
-    parser.add_argument('--carbon_region', type=str, default='South England',
+    parser.add_argument('--carbon-region', type=str, default='South England',
                         help='Region shorthand for The National Grid ESO Regional Carbon Intensity API (default is "South England").')
 
-    parser.add_argument('--no_plot', action='store_true',
+    parser.add_argument('--no-plot', action='store_true',
                         help='Disable plotting of GPU metrics (default is enabled).')
 
-    parser.add_argument('--live_plot', action='store_true',
+    parser.add_argument('--live-plot', action='store_true',
                         help='Enable live plotting of GPU metrics.')
 
-    parser.add_argument('--export_to_meerkat', action='store_true',
+    parser.add_argument('--export-to-meerkat', action='store_true',
                         help='Enable exporting of collected data to MeerkatDB.')
 
-    parser.add_argument('--benchmark_image', type=str,
+    parser.add_argument('--benchmark-image', type=str,
                         help='Docker container image to run as a benchmark.')
 
-    parser.add_argument('--benchmark_command', type=str,
+    parser.add_argument('--benchmark-command', type=str,
                         help='Command to run as a benchmark in a tmux session.')
 
-    parser.add_argument('--monitor_logs', action='store_true',
+    parser.add_argument('--monitor-logs', action='store_true',
                         help='Enable monitoring of container or tmux logs in addition to GPU metrics.')
 
-    parser.add_argument('--nvidia_nsights', action='store_true',
+    parser.add_argument('--nvidia-nsights', action='store_true',
                         help='Enable Nvidia Nsights to do extra GPU and CPU sampling.')
 
     args = parser.parse_args()
 
     # Validate arguments
     if not args.benchmark_image and not args.benchmark_command:
-        LOGGER.error("Neither '--benchmark_image' nor '--benchmark_command' provided. One must be specified.")
-        parser.error("You must specify either '--benchmark_image' or '--benchmark_command'.")
+        LOGGER.error("Neither '--benchmark-image' nor '--benchmark-command' provided. One must be specified.")
+        parser.error("You must specify either '--benchmark-image' or '--benchmark-command'.")
 
     if args.benchmark_image and args.benchmark_command:
-        LOGGER.error("Both '--benchmark_image' and '--benchmark_command' provided. Only one must be specified.")
-        parser.error("You must specify either '--benchmark_image' or '--benchmark_command', not both.")
+        LOGGER.error("Both '--benchmark-image' and '--benchmark-command' provided. Only one must be specified.")
+        parser.error("You must specify either '--benchmark-image' or '--benchmark-command', not both.")
 
     if args.interval <= 0:
         error_message = f"Monitoring interval must be a positive integer. Provided value: {args.interval}"
