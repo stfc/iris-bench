@@ -25,7 +25,7 @@ Current GPU Metrics (Tesla V100-PCIE-32GB) as of 2024-09-12 16:53:14:
 ## Monitor Benchmark Container/Tmux Logs
   
 ```sh
-gpu_monitor --benchmark_image "synthetic_regression" --monitor_logs
+gpu_monitor --benchmark-image "synthetic_regression" --monitor-logs
 
 Container Logs:
 <BEGIN> Running benchmark synthetic_regression in training mode
@@ -65,14 +65,14 @@ Gives you saves plot png during every reading so that the metrics can be viewed 
 
 **Example command and Results:**
 ```sh
-gpu_monitor --benchmark_image "stemdl_classification_2gpu" --plot_live
+gpu_monitor --benchmark-image "stemdl_classification_2gpu" --plot_live
 ```
 This command was run on a VM with 2 V100 GPUs for the results in [Collecting Results Section](collecting_results.md#gpu-metrics-timeseries-plot-png).
 
 
 ## (Grafana) Timeseries Plot Live
 
-If the `--export_to_meerkat` tag is used the results can be viewed live from the Grafana Dashboard. Data from multiple VMs can be collected all at once allowing for a live comparison of performance as well.
+If the `--export-to-meerkat` tag is used the results can be viewed live from the Grafana Dashboard. Data from multiple VMs can be collected all at once allowing for a live comparison of performance as well.
 
 See example results [Collecting Results Section](collecting_results.md#gpu-metric-grafana-plots).
 
