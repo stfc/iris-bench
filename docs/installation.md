@@ -1,19 +1,22 @@
 ## Pre-Installation Instructions
 
-### 1. **Set Up Ubuntu VM**: 
-- Start with an Ubuntu VM equipped with Nvidia GPUs.
+1. Build a VM in OpenStack with: 
+   - Image: `ubuntu-jammy-22.04-nogui` or `ubuntu-noble-24.04-nogui`
+   - Flavor: Any `g-*` flavor with an NVIDIA GPU
+   - Your key pair for SSH access
+   - Accessible networking: Internal or Private with FIP
 
-### 2. **Install Dependencies**:
+2. Use [this](https://www.nvidia.com/en-gb/drivers/) NVIDIA page to find the latest driver for your VMs GPU and note the number e.g. 590
 
-   - **For Docker Benchmarks**: Install Docker, Nvidia Docker (for GPU support), git, Python with Virtual Environment, and Nvidia drivers.
-
-   - **For Direct Machine Benchmarks**: Install Tmux, git, Python with Virtual Environment, and Nvidia drivers.
-
-### 3. **Setup VM With Script (requires git to clone repo)**:
-
-   - **Docker Benchmarks**: Execute `./setup_vm_docker.sh` from the cloned Git repository.
-
-   - **Direct Machine Benchmarks**: Execute `./setup_vm_tmux.sh` from the cloned Git repository.
+3. Install Dependencies:
+   ```shell
+   git clone https://github.com/stfc/iris-bench.git
+   cd iris-bench
+   # For using Docker containers to benchmark:
+   ./setup_vm_docker.sh <nvidia-driver-version>
+   # For direct machine benchmarking:
+   ./setup_vm_tmux.sh <nvidia-driver-version>
+   ```
 
 ---
 
