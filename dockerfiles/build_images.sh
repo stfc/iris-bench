@@ -22,11 +22,12 @@ BASE_IMAGES_DIR="base_images"
 APP_IMAGES_DIR="app_images"
 
 # List of base images to build
-BASE_IMAGES=("mantid_base" "sciml_base")
+BASE_IMAGES=("mantid_base" "sciml_base" "nvidia_hpc_base")
 
 # List of app images to build
 SCIML_IMAGES=("mnist_tf_keras" "stemdl_classification" "synthetic_regression")
 MANTID_IMAGES=("mantid_run_1" "mantid_run_4" "mantid_run_5" "mantid_run_8")
+NVIDIA_IMAGES=("nvidia_hpl")
 
 # Build base images first
 echo "Building base images..."
@@ -54,6 +55,16 @@ for IMAGE in "${MANTID_IMAGES[@]}"; do
     echo "Building app image: ${IMAGE_TAG}..."
     docker build -f $DOCKERFILE -t ${IMAGE_TAG} --build-arg BASE_IMAGE=mantid_base:latest .
 done
+
+# Build nvidia_hpc_bench images
+echo "Building nvidia_hpc_bench images..."
+for IMAGE in "${NVIDIA_IMAGES[@]}"; do
+    DOCKERFILE="${APP_IMAGES_DIR}/nvidia_hpc_bench/Dockerfile.${IMAGE}"
+    IMAGE_TAG="${IMAGE}:latest"
+    echo "Building app image: ${IMAGE_TAG}..."
+    docker build -f $DOCKERFILE -t ${IMAGE_TAG} --build-arg BASE_IMAGE=nvidia_hpc_base:latest .
+done
+
 
 # Build dummy image
 echo "Building dummy image..."

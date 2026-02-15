@@ -1,0 +1,11 @@
+#Use an ARG to spesify the base image
+ARG BASE_IMAGE=harbor.stfc.ac.uk/stfc-cloud-staging/iris-bench/nvidia_hpc_base:latest
+
+# USe the base image
+FROM ${BASE_IMAGE}
+
+# Copy built HPL from the build image
+WORKDIR /root
+
+# Run HPL automatically on container start
+ENTRYPOINT ["/bin/bash", "-c", "./launch_hpl_experiment.py -c 1 -s dgxa100_80GG --maxnodes 6  --cruntime enroot"]
